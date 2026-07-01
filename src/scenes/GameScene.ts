@@ -218,10 +218,10 @@ export class GameScene extends Phaser.Scene {
   private setupPlayer(): void {
     this.boatShadow = this.add.graphics().setDepth(4);
     this.boat = this.add.container(this.boatX, this.boatY).setDepth(7);
-    const boatImg = this.add.image(0, 0, 'boat_pixel');
-    // Size the pixel sprite to match the original boat footprint (~50px wide)
-    boatImg.setDisplaySize(50, Math.round(50 * (676 / 318)));
-    this.boat.add(boatImg);
+    const boatSprite = this.add.sprite(0, 0, 'boat_sheet');
+    boatSprite.setDisplaySize(80, 80);
+    boatSprite.play('boat_sail');
+    this.boat.add(boatSprite);
   }
 
   private setupInput(): void {

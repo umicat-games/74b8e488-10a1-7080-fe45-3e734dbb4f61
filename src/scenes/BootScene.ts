@@ -23,10 +23,17 @@ export class BootScene extends Phaser.Scene {
     drawLoadingBar(this);
     preloadManifest(this);
     preloadRules(this);
-    this.load.image('boat_pixel', 'uploaded/boat_pixel.png');
+    this.load.spritesheet('boat_sheet', 'uploaded/generated_cfowo_sheet.png', { frameWidth: 68, frameHeight: 68 });
   }
 
   create(): void {
+    // Register boat animation (must be in create, after texture is loaded)
+    this.anims.create({
+      key: 'boat_sail',
+      frames: this.anims.generateFrameNumbers('boat_sheet', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1,
+    });
     const manifest = getManifest(this);
     this.scene.start('GameScene', { sceneId: manifest.initialScene });
   }

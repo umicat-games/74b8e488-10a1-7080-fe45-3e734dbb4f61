@@ -68,7 +68,7 @@
 - `public/rules.json` — created (tunable balance values)
 - `src/scenes/BootScene.ts` — added `preloadRules` + boat_pixel image preload
 - `src/scenes/GameScene.ts` — complete game implementation (~1230 lines); boat now uses AI pixel sprite
-- `public/uploaded/boat_pixel.png` — AI-generated pixel art boat sprite (top-down, 318×676)
+- `public/uploaded/generated_cfowo_sheet.png` — animated boat spritesheet (68×68 per frame, 4 frames, animation key: boat_sail)
 
 ### Constants
 - `RIVER_LEFT=320`, `RIVER_RIGHT=960`, `RIVER_MID_X=640`, `RIVER_WIDTH=640`
