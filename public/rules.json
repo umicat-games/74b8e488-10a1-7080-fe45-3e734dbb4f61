@@ -1,0 +1,17 @@
+{
+  "balance": {
+    "playerSpeed": 220,
+    "startHp": 100,
+    "rockDamage": 15,
+    "bigFishDamage": 20,
+    "smallFishHeal": 25,
+    "invincibilityMs": 1500,
+    "jumpDurationMs": 700,
+    "jumpCooldownMs": 1000,
+    "_meta_playerSpeed": { "min": 100, "max": 400, "step": 10, "label": "玩家速度 (px/s)" },
+    "_meta_startHp": { "min": 50, "max": 200, "step": 10, "label": "初始HP" },
+    "_meta_rockDamage": { "min": 5, "max": 50, "step": 5, "label": "石头伤害" },
+    "_meta_bigFishDamage": { "min": 5, "max": 50, "step": 5, "label": "大鱼伤害" },
+    "_meta_smallFishHeal": { "min": 5, "max": 50, "step": 5, "label": "小鱼回血量" }
+  }
+}
