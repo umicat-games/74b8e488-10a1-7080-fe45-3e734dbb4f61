@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { getRule } from '@umicat/phaser-sdk';
 import { GAME_WIDTH, GAME_HEIGHT } from '../config';
+import { FISH_DATA } from '../data/fish';
 
 // ── Layout ──────────────────────────────────────────────
 const RIVER_LEFT = 320;
@@ -808,7 +809,7 @@ export class GameScene extends Phaser.Scene {
 
     if (time - this.lastSmallFishTime > lc.smallFishInterval) {
       this.lastSmallFishTime = time;
-      const ft = Phaser.Math.Between(0, FISH_TYPES.length - 1);
+      const ft = Phaser.Math.Between(0, FISH_DATA.length - 1);
       if (Math.random() < 0.28) {
         // Fish cluster
         const cx = Phaser.Math.Between(RIVER_LEFT + 55, RIVER_RIGHT - 55);
@@ -850,7 +851,7 @@ export class GameScene extends Phaser.Scene {
     if (obs.type === 'smallfish') {
       this.collectFish(obs.fishType);
       this.spawnPickupParticles(obs.x, obs.y, FISH_TYPES[obs.fishType].color);
-      this.floatText(obs.x, obs.y - 10, `+${FISH_TYPES[obs.fishType].heal}`, '#88ff44');
+      this.floatText(obs.x, obs.y - 10, `+${FISH_DATA[obs.fishType]?.heal ?? FISH_TYPES[obs.fishType].heal}`, '#88ff44');
     } else {
       const dmg = obs.type === 'rock' ? this.rockDamage : this.bigFishDamage;
       const pColor = obs.type === 'rock' ? 0x888888 : 0x4488bb;
@@ -874,7 +875,7 @@ export class GameScene extends Phaser.Scene {
   private eatFish(slot: number): void {
     const s = this.inventory[slot];
     if (s.type < 0 || s.count < 1) return;
-    const heal = FISH_TYPES[s.type]?.heal ?? this.smallFishHeal;
+    const heal = FISH_DATA[s.type]?.heal ?? FISH_TYPES[s.type]?.heal ?? this.smallFishHeal;
     this.hp = Math.min(this.maxHp, this.hp + heal);
     s.count--;
     if (s.count === 0) s.type = -1;

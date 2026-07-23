@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { preloadManifest, getManifest, preloadRules } from '@umicat/phaser-sdk';
 import { GAME_WIDTH, GAME_HEIGHT } from '../config';
+import { applyFishData } from '../data/fish';
 
 /**
  * BootScene — loads the scene-as-data manifest, then hands off to
@@ -24,9 +25,13 @@ export class BootScene extends Phaser.Scene {
     preloadManifest(this);
     preloadRules(this);
     this.load.spritesheet('boat_sheet', 'uploaded/generated_cfowo_sheet.png', { frameWidth: 68, frameHeight: 68 });
+    this.load.json('data-fish', 'data/fish.json');
   }
 
   create(): void {
+    // Apply fish data table before game starts
+    applyFishData(this.cache.json.get('data-fish'));
+
     // Register boat animation (must be in create, after texture is loaded)
     this.anims.create({
       key: 'boat_sail',

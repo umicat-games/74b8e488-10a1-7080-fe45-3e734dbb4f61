@@ -66,9 +66,11 @@
 ### Files Changed This Session
 - `src/visuals.ts` — created (empty renderScripts export needed by main.ts)
 - `public/rules.json` — created (tunable balance values)
-- `src/scenes/BootScene.ts` — added `preloadRules` + boat_pixel image preload
-- `src/scenes/GameScene.ts` — complete game implementation (~1230 lines); boat now uses AI pixel sprite
+- `src/scenes/BootScene.ts` — added `preloadRules` + boat_pixel image preload; also loads `data/fish.json` and applies it via `applyFishData`
+- `src/scenes/GameScene.ts` — complete game implementation (~1230 lines); boat now uses AI pixel sprite; heal lookups now use `FISH_DATA` from data module
 - `public/uploaded/generated_cfowo_sheet.png` — animated boat spritesheet (68×68 per frame, 4 frames, animation key: boat_sail)
+- `public/data/fish.json` — fish data table (name + heal per type); editable in Data Tables tool without code changes
+- `src/data/fish.ts` — fish data loader module (`FISH_DATA` array + `applyFishData`); has code fallback values
 
 ### Constants
 - `RIVER_LEFT=320`, `RIVER_RIGHT=960`, `RIVER_MID_X=640`, `RIVER_WIDTH=640`
